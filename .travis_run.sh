@@ -4,6 +4,7 @@ echo -n "$TRAVIS_OS_NAME$STEAM$NODEP" > buildinfo.txt
 
 if [ -z "$STEAMLESS" ] && [ -z "$SSH_KEY" ]; then
 	echo "Can't get steam API without SSH key, skipping"
+	echo "::warning file=.travis_run.sh,title=Steam Key Error::Can't get steam API without SSH key so build skipped"
 	exit 0
 fi
 
