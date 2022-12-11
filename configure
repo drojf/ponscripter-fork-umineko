@@ -731,6 +731,26 @@ else
     fi
 fi
 
+$echo_n "Checking for xmlto... ${nobr}"
+if xmlto --version >/dev/null 2>/dev/null; then
+    echo "found"
+    $echo_n "Checking for perl... ${nobr}"
+    if perl --version >/dev/null 2>/dev/null; then
+        echo "found"
+        MAKEDOC="doc man html"
+        CLEANDOC="cleandoc"
+        MAKEMAN=man
+        case $SYS in
+            MinGW | MacOSX) DEFAULTDOC=html ;;
+            *)              DEFAULTDOC=man  ;;
+        esac
+    else
+        echo "no: documentation will not be built"
+    fi
+else
+    echo "no: documentation will not be built"
+fi
+
 if test -n "$MAKEDOC"; then
     $echo_n "Checking for onvdl (optional)... ${nobr}"
     case `onvdl 2>/dev/null | head -1` in
