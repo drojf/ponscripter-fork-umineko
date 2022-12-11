@@ -9,12 +9,13 @@ if [ -z "$STEAMLESS" ] && [ -z "$SSH_KEY" ]; then
 fi
 
 if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-	./configure --unsupported-compiler --with-internal-libs $STEAM
+	./configure --unsupported-compiler --with-internal-libs --no-docs $STEAM
 	LDFLAGS="-dead_strip" make
 	if [[ "$(gcc --version)" =~ "Apple clang version "([0-9]+) ]] && [[ "${BASH_REMATCH[1]}" -lt 10 ]]; then
 		mv src/ponscr ponscr64
 		make distclean
-		CC="clang -arch i386" CXX="clang++ -arch i386" ./configure --unsupported-compiler --with-internal-libs $STEAM
+		# Disable making docs on MacOS to prevent error - we don't output docs anyway on Github Actions
+		CC="clang -arch i386" CXX="clang++ -arch i386" ./configure --unsupported-compiler --with-internal-libs --no-docs $STEAM
 		CFLAGS="-arch i386" LDFLAGS="-dead_strip -arch i386" make MACOSX_DEPLOYMENT_TARGET=10.5
 		mv src/ponscr ponscr32
 		lipo -create -output src/ponscr ponscr32 ponscr64
