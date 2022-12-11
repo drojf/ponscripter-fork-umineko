@@ -18,9 +18,9 @@ jobs:
     name: ${{ matrix.os }}${{ matrix.steam }}${{ matrix.nodep }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Cache MSYS2
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: C:\tools\msys64
           key: msys2
@@ -67,7 +67,7 @@ jobs:
           echo "name=umineko-$(cat buildinfo.txt)" >> $GITHUB_OUTPUT
         shell: bash
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.build.outputs.name }}
           path: |
