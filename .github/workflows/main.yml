@@ -64,26 +64,24 @@ jobs:
           else
             bash .travis_run.sh
           fi
-          echo "name=umineko-$(cat buildinfo.txt)" >> $GITHUB_OUTPUT
+          echo "name=ponscr-$(cat buildinfo.txt)" >> $GITHUB_OUTPUT
         shell: bash
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.build.outputs.name }}
           path: |
-            ponscr-question.zip
-            ponscr-answer.zip
+            ponscr.zip
       - name: Rename Files
         run: |
-          mv ponscr-question.zip umineko-$(cat buildinfo.txt)-question.zip || true
-          mv ponscr-answer.zip umineko-$(cat buildinfo.txt)-answer.zip || true
+          mv ponscr.zip ponscr-$(cat buildinfo.txt).zip || true
         shell: bash
       # Publish a release, only on tagged commits
       - name: Release (tag)
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') # only publish tagged commits
         with:
-          files: umineko-*.zip
+          files: ponscr-*.zip
           draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
