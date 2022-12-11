@@ -36,7 +36,7 @@ jobs:
           ubuntu*)
             echo "TRAVIS_OS_NAME=linux" >> $GITHUB_ENV;;
           macos*)
-            HOMEBREW_NO_INSTALL_CLEANUP=1 brew install automake
+            HOMEBREW_NO_INSTALL_CLEANUP=1 brew install automake docbook-xsl
             echo "TRAVIS_OS_NAME=osx" >> $GITHUB_ENV;;
           esac
           if [ -z "$STEAM" ]; then echo STEAMLESS=YES >> $GITHUB_ENV; fi
