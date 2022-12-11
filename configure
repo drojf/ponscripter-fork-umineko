@@ -57,6 +57,7 @@ WITH_LIBNOTIFY=false
 ENABLE_GAME_CONTROLLERS=true
 STEAM_API=false
 LOCAL_SAVEDIR=false
+NO_DOCS=false
 
 SDL_CONFIG=sdl2-config
 SMPEG_CONFIG=smpeg2-config
@@ -200,6 +201,8 @@ do
         STEAM_API=false ;;
       --local-savedir | -local-savedir | --enable-local-savedir | --with-local-savedir)
         LOCAL_SAVEDIR=true ;;
+      --no-docs | -no-docs)
+        NO_DOCS=true ;;
 
 
     -\? | -h | -help | --help)
@@ -731,24 +734,26 @@ else
     fi
 fi
 
-$echo_n "Checking for xmlto... ${nobr}"
-if xmlto --version >/dev/null 2>/dev/null; then
-    echo "found"
-    $echo_n "Checking for perl... ${nobr}"
-    if perl --version >/dev/null 2>/dev/null; then
+if not $NO_DOCS then
+    $echo_n "Checking for xmlto... ${nobr}"
+    if xmlto --version >/dev/null 2>/dev/null; then
         echo "found"
-        MAKEDOC="doc man html"
-        CLEANDOC="cleandoc"
-        MAKEMAN=man
-        case $SYS in
-            MinGW | MacOSX) DEFAULTDOC=html ;;
-            *)              DEFAULTDOC=man  ;;
-        esac
+        $echo_n "Checking for perl... ${nobr}"
+        if perl --version >/dev/null 2>/dev/null; then
+            echo "found"
+            MAKEDOC="doc man html"
+            CLEANDOC="cleandoc"
+            MAKEMAN=man
+            case $SYS in
+                MinGW | MacOSX) DEFAULTDOC=html ;;
+                *)              DEFAULTDOC=man  ;;
+            esac
+        else
+            echo "no: documentation will not be built"
+        fi
     else
         echo "no: documentation will not be built"
     fi
-else
-    echo "no: documentation will not be built"
 fi
 
 if test -n "$MAKEDOC"; then
