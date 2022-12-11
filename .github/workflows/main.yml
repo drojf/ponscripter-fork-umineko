@@ -18,7 +18,7 @@ jobs:
     name: ${{ matrix.os }}${{ matrix.steam }}${{ matrix.nodep }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Cache MSYS2
         uses: actions/cache@v2
         with:
