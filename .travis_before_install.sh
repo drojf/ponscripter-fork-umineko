@@ -2,6 +2,7 @@ set -e
 
 if [ -z "$STEAMLESS" ] && [ -z "$SSH_KEY" ]; then
 	echo "Can't get steam API without SSH key, skipping"
+	echo "::warning file=.travis_before_install.sh::Can't get steam API without SSH key so build skipped"
 	exit 0
 fi
 
