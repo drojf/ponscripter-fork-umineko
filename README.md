@@ -44,7 +44,9 @@ We've added an additional option for scaling to suit the Umineko Steam release. 
 
 In most cases you will never need to use this scaling mode, but if you wish to enable it, add `@umineko` after the `mode` command, for example the very first commented line of your script could be something like `;value2500,modew540@2x@umineko`
 
-### Documentation
+## Documentation
+
+The below links contain general information about POnscripter (not specific to this fork of POnscripter):
 
 * [Ponscripter Tutorial](https://07th-mod.github.io/ponscripter-fork) - Most likely you should start here
 * [Ponscripter API Reference](https://07th-mod.github.io/ponscripter-fork/api/) - Mirror of Uncle Mion's Ponscripter API reference
