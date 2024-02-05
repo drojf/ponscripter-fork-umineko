@@ -1756,7 +1756,7 @@ bool PonscripterLabel::isStartKinsoku(wchar char_val) {
         char_val == 0x3019 || char_val == 0x3017 || char_val == 0x301F ||
         char_val == 0xFF60 || char_val == 0xBB ||
         char_val == 0x2019 || char_val == 0x201D || char_val == 0x2C ||
-        char_val == 0x29 || char_val == 0x5D);
+        char_val == 0x29 || char_val == 0x5D || char_val == 0xFF0C);
 }
 
 bool PonscripterLabel::isMiddleKinsoku(wchar char_val) {
